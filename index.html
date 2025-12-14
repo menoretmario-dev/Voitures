@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Voitures à vendre</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Mes voitures à vendre</h1>
+
+<div class="voiture">
+  <a href="asx4.jpg" target="_blank">
+    <img src="asx4.jpg" alt="Photo 4">
+
+<div class="photos">
+  <a href="asx3.jpg" target="_blank">
+   <img src="asx3.jpg" alt="Photo 3" class="miniature">
+  <a href="asx2.jpg" target="_blank">
+   <img src="asx2.jpg" alt="Photo 2" class="miniature">
+  <a href="asx1.jpg" target="_blank">
+   <img src="asx1.jpg" alt="Photo 1" class="miniature">
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" onclick="fermerLightbox()">
+  <img id="lightbox-img" src="" alt="Photo agrandie">
+</div>
+
+    <h2>Mitsubishi ASX 2.2 DI-D 150 4WD instyle auto</h2>
+    <p>Année : 2014</p>
+    <p>Kilométrage : 211 184 km</p>
+    <p class="prix">Prix : 7990 €</p>
+
+    <a href="tel:0658161913" class="bouton">📞 Appeler</a>
+</div>
+
+<script>
+  const miniatures = document.querySelectorAll('.miniature');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  miniatures.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    });
+  });
+
+  function fermerLightbox() {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+  }
+</script>
+
+</body>
+</html>
