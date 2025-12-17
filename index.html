@@ -1,58 +1,184 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Voitures à vendre</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Exposition de Véhicules à Vendre | Bonnes Affaires</title>
+
+
+<!-- SEO -->
+<meta name="description" content="Exposition de véhicules à vendre : voitures d'occasion révisées, prix attractifs, essence, diesel et hybrides. Contact rapide." />
+<meta name="keywords" content="voitures à vendre, exposition automobile, voiture occasion, achat voiture, concession" />
+<meta name="author" content="Exposition de Véhicules" />
+
+
+<!-- Open Graph (Google & réseaux sociaux) -->
+<meta property="og:title" content="Exposition de Véhicules à Vendre" />
+<meta property="og:description" content="Découvrez nos meilleures offres de véhicules disponibles immédiatement." />
+<meta property="og:type" content="website" />
+
+
+<style>
+body {
+font-family: Arial, Helvetica, sans-serif;
+margin: 0;
+background: #f4f6f8;
+color: #333;
+}
+header {
+background: linear-gradient(135deg, #020617, #0f172a);
+color: white;
+padding: 2rem 1rem;
+text-align: center;
+}
+.header-brand {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.75rem;
+}
+.header-brand img {
+max-height: 400px;
+width: auto;
+}
+@media (max-width: 600px) {
+.header-brand img {
+max-height: 100px;
+}
+}
+header h1 {
+margin: 0;
+font-size: 2rem;
+}
+header p {
+margin-top: 0.5rem;
+color: #cbd5f5;
+}
+.container {
+max-width: 1200px;
+margin: 2rem auto;
+padding: 0 1rem;
+}
+
+
+@media (max-width: 600px) {
+header h1 {
+font-size: 1.5rem;
+}
+.price {
+font-size: 1.1rem;
+}
+}
+.vehicles {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5rem;
+}
+.card {
+background: white;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+transition: transform 0.2s ease;
+}
+.card:hover {
+transform: translateY(-5px);
+}
+.card img {
+width: 100%;
+height: 180px;
+object-fit: cover;
+}
+.card-content {
+padding: 1rem;
+}
+.card-content h3 {
+margin: 0 0 0.5rem 0;
+}
+.price {
+font-size: 1.2rem;
+font-weight: bold;
+color: #16a34a;
+margin: 0.5rem 0;
+}
+.details {
+font-size: 0.9rem;
+color: #555;
+margin-bottom: 1rem;
+}
+.btn {
+display: inline-block;
+text-decoration: none;
+background: #2563eb;
+color: white;
+padding: 0.6rem 1rem;
+border-radius: 8px;
+font-size: 0.9rem;
+}
+footer {
+text-align: center;
+padding: 1.5rem;
+background: #e5e7eb;
+margin-top: 3rem;
+font-size: 0.9rem;
+}
+</style>
 </head>
 <body>
 
-<h1>MAHE JIMMY AUTO</h1>
 
-<div class="voiture">
-  <a href="asx4.jpg" target="_blank">
-    <img src="asx4.jpg" alt="Photo 4">
-
-<div class="photos">
-  <a href="asx3.jpg" target="_blank">
-   <img src="asx3.jpg" alt="Photo 3" class="miniature">
-  <a href="asx2.jpg" target="_blank">
-   <img src="asx2.jpg" alt="Photo 2" class="miniature">
-  <a href="asx1.jpg" target="_blank">
-   <img src="asx1.jpg" alt="Photo 1" class="miniature">
-
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox" onclick="fermerLightbox()">
-  <img id="lightbox-img" src="" alt="Photo agrandie">
+<header>
+<div class="header-brand">
+<img src="logo.png" alt="Logo entreprise – Vente de véhicules" />
+<h1>Exposition de Véhicules à Vendre</h1>
+<p>Découvrez nos meilleures offres de voitures disponibles</p>
 </div>
+</header>
 
-    <h2>Mitsubishi ASX 2.2 DI-D 150 4WD instyle auto</h2>
-    <p>Année : 2014</p>
-    <p>Kilométrage : 211 184 km</p>
-    <p class="prix">Prix : 7490 €</p>
 
-<script>
-  const miniatures = document.querySelectorAll('.miniature');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
+<main class="container">
+<section class="vehicles">
 
-  miniatures.forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt;
-    });
-  });
+      <!-- asx4.jpg -->
+      <div class="card">
+        <img src="images/asx4.jpg" alt="Mitsubishi ASX occasion">
+        <div class="card-content">
+          <h3>Mitsubishi ASX 2.2 – Occasion</h3>
+          <div class="price">7 490 €</div>
+          <div class="details">2014 • Diesel • 211 200 km</div>
+          <a href="#" class="btn">Voir détails</a>
+        </div>
+      </div>
 
-  function fermerLightbox() {
-    lightbox.style.display = 'none';
-    lightboxImg.src = '';
-  }
-</script>
+      <!-- Véhicule 2 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x250" alt="Voiture 2" />
+        <div class="card-content">
+          <h3>Renault Clio – Occasion</h3>
+          <div class="price">7 200 €</div>
+          <div class="details">2016 • Diesel • 120 000 km</div>
+          <a href="#" class="btn">Voir détails</a>
+        </div>
+      </div>
 
-  <a href="tel:0658161913" class="bouton">📞 Appeler</a>
-</div>
-      
+      <!-- Véhicule 3 -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x250" alt="Voiture 3" />
+        <div class="card-content">
+          <h3>Toyota Corolla Hybride – Occasion</h3>
+          <div class="price">11 900 €</div>
+          <div class="details">2019 • Hybride • 65 000 km</div>
+          <a href="#" class="btn">Voir détails</a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    © 2025 – Exposition de Véhicules | Contact : 06 58 16 19 13
+  </footer>
+
 </body>
 </html>
 
