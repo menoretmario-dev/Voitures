@@ -1,164 +1,225 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Exposition de Véhicules à Vendre | Bonnes Affaires</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exposition de Véhicules à Vendre | Bonnes Affaires</title>
 
+  <!-- SEO -->
+  <meta name="description" content="Exposition de véhicules à vendre : voitures d'occasion révisées, prix attractifs, essence, diesel et hybrides. Contact rapide." />
+  <meta name="keywords" content="voitures à vendre, exposition automobile, voiture occasion, achat voiture, concession" />
+  <meta name="author" content="Exposition de Véhicules" />
 
-<!-- SEO -->
-<meta name="description" content="Exposition de véhicules à vendre : voitures d'occasion révisées, prix attractifs, essence, diesel et hybrides. Contact rapide." />
-<meta name="keywords" content="voitures à vendre, exposition automobile, voiture occasion, achat voiture, concession" />
-<meta name="author" content="Exposition de Véhicules" />
+  <!-- Open Graph (Google & réseaux sociaux) -->
+  <meta property="og:title" content="Exposition de Véhicules à Vendre" />
+  <meta property="og:description" content="Découvrez nos meilleures offres de véhicules disponibles immédiatement." />
+  <meta property="og:type" content="website" />
 
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #020617, #0f172a);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .header-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .header-brand img {
+      max-height: 140px;
+      width: auto;
+    }
+    @media (max-width: 600px) {
+      .header-brand img {
+        max-height: 100px;
+      }
+      header h1 {
+        font-size: 1.4rem;
+      }
+    }
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin-top: 0.5rem;
+      color: #cbd5f5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-<!-- Open Graph (Google & réseaux sociaux) -->
-<meta property="og:title" content="Exposition de Véhicules à Vendre" />
-<meta property="og:description" content="Découvrez nos meilleures offres de véhicules disponibles immédiatement." />
-<meta property="og:type" content="website" />
-
-
-<style>
-body {
-font-family: Arial, Helvetica, sans-serif;
-margin: 0;
-background: #f4f6f8;
-color: #333;
-}
-header {
-background: linear-gradient(135deg, #020617, #0f172a);
-color: white;
-padding: 2rem 1rem;
-text-align: center;
-}
-.header-brand {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 0.75rem;
-}
-.header-brand img {
-max-height: 400px;
-width: auto;
-}
-@media (max-width: 600px) {
-.header-brand img {
-max-height: 100px;
-}
-}
-header h1 {
-margin: 0;
-font-size: 2rem;
-}
-header p {
-margin-top: 0.5rem;
-color: #cbd5f5;
-}
-.container {
-max-width: 1200px;
-margin: 2rem auto;
-padding: 0 1rem;
-}
-
-
-@media (max-width: 600px) {
-header h1 {
-font-size: 1.5rem;
-}
-.price {
-font-size: 1.1rem;
-}
-}
-.vehicles {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 1.5rem;
-}
-.card {
-background: white;
-border-radius: 12px;
-overflow: hidden;
-box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-transition: transform 0.2s ease;
-}
-.card:hover {
-transform: translateY(-5px);
-}
-.card img {
-width: 100%;
-height: 180px;
-object-fit: cover;
-}
-.card-content {
-padding: 1rem;
-}
-.card-content h3 {
-margin: 0 0 0.5rem 0;
-}
-.price {
-font-size: 1.2rem;
-font-weight: bold;
-color: #16a34a;
-margin: 0.5rem 0;
-}
-.details {
-font-size: 0.9rem;
-color: #555;
-margin-bottom: 1rem;
-}
-.btn {
-display: inline-block;
-text-decoration: none;
-background: #2563eb;
-color: white;
-padding: 0.6rem 1rem;
-border-radius: 8px;
-font-size: 0.9rem;
-}
-footer {
-text-align: center;
-padding: 1.5rem;
-background: #e5e7eb;
-margin-top: 3rem;
-font-size: 0.9rem;
-}
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      .price {
+        font-size: 1.1rem;
+      }
+    }
+    .vehicles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-content h3 {
+      margin: 0 0 0.5rem 0;
+    }
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #16a34a;
+      margin: 0.5rem 0;
+    }
+    .details {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #e5e7eb;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+    .carousel {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+  }
+  .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  .carousel img.active {
+    display: block;
+  }
+  .carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .carousel .prev { left: 10px; }
+  .carousel .next { right: 10px; }
 </style>
+<script>
+  document.querySelectorAll('.carousel').forEach(carousel => {
+    const images = carousel.querySelectorAll('img');
+    let index = 0;
+    carousel.querySelector('.next').onclick = () => {
+      images[index].classList.remove('active');
+      index = (index + 1) % images.length;
+      images[index].classList.add('active');
+    };
+    carousel.querySelector('.prev').onclick = () => {
+      images[index].classList.remove('active');
+      index = (index - 1 + images.length) % images.length;
+      images[index].classList.add('active');
+    };
+  });
+</script>
 </head>
 <body>
 
+  <header>
+    <div class="header-brand">
+      <img src="logo.png" alt="Logo entreprise – Vente de véhicules" />
+      <h1>Exposition de Véhicules à Vendre</h1>
+      <p>Découvrez nos meilleures offres de voitures disponibles</p>
+    </div>
+  </header>
 
-<header>
-<div class="header-brand">
-<img src="logo.png" alt="Logo entreprise – Vente de véhicules" />
-<h1>Exposition de Véhicules à Vendre</h1>
-<p>Découvrez nos meilleures offres de voitures disponibles</p>
-</div>
-</header>
+  <main class="container">
+    <section class="vehicles">
 
-
-<main class="container">
-<section class="vehicles">
-
-      <!-- Mitsubishi ASX 2.2 -->
+      <!-- Véhicule 1 -->
       <div class="card">
-        <img src="asx4.jpg" alt="Mitsubishi ASX occasion">
-        <div class="card-content">
-          <h3>Mitsubishi ASX 2.2 – Occasion</h3>
-          <div class="price">7 490 €</div>
-          <div class="details">2014 • Diesel • 211 200 km</div>
-          <a href="#" class="btn">Voir détails</a>
-        </div>
-      </div>
+  <div class="carousel" data-index="0">
+    <img src="asx4.jpg" alt="Mitsubishi ASX vue 1" class="active">
+    <img src="asx1.jpg" alt="Mitsubishi ASX vue 2" class="active">
+    <img src="asx2.jpg" alt="Mitsubishi ASX vue 3" class="active">    
+    <img src="asx3.jpg" alt="Mitsubishi ASX vue 4" class="active">
+    <img src="asx5.jpg" alt="Mitsubishi ASX vue 5" class="active">
+    <img src="asx6.jpg" alt="Mitsubishi ASX vue 6" class="active">
+    <img src="asx7.jpg" alt="Mitsubishi ASX vue 7" class="active">
+    <img src="asx8.jpg" alt="Mitsubishi ASX vue 8" class="active">
+    <img src="asx9.jpg" alt="Mitsubishi ASX vue 9" class="active">
+    <img src="asx10.jpg" alt="Mitsubishi ASX vue 10" class="active">
+    <img src="asx11.jpg" alt="Mitsubishi ASX vue 11" class="active">
+    <img src="asx12.jpg" alt="Mitsubishi ASX vue 12" class="active">
+    <img src="asx13.jpg" alt="Mitsubishi ASX vue 13" class="active">   
+    <button class="prev">‹</button>
+    <button class="next">›</button>
+  </div>
+  <div class="card-content">
+    <h3>Mitsubishi ASX 2.2 – Occasion</h3>
+    <div class="price">7 490 €</div>
+    <div class="details">2014 • Diesel • 211 200 km</div>
+    <a href="#" class="btn">Voir détails</a>
+  </div>
+</div>
 
     </section>
   </main>
 
   <footer>
-    © 2025 – Exposition de Véhicules | Contact : 06 58 16 19 13
+    © 2025 – Exposition de Véhicules | Contact : contact@vehicules.com
   </footer>
 
 </body>
 </html>
+
+
 
 
 
