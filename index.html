@@ -3,384 +3,261 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Exposition de Véhicules à Vendre | Bonnes Affaires</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Exposition de véhicules à vendre : voitures d'occasion révisées, prix attractifs, essence, diesel et hybrides. Contact rapide." />
-  <meta name="keywords" content="voitures à vendre, exposition automobile, voiture occasion, achat voiture, concession" />
-  <meta name="author" content="Exposition de Véhicules" />
-
-  <!-- Open Graph (Google & réseaux sociaux) -->
-  <meta property="og:title" content="Exposition de Véhicules à Vendre" />
-  <meta property="og:description" content="Découvrez nos meilleures offres de véhicules disponibles immédiatement." />
-  <meta property="og:type" content="website" />
+  <title>Exposition de Véhicules | Bonnes Affaires</title>
 
   <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      background: #f4f6f8;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(135deg, #020617, #0f172a);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-    .header-brand {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .header-brand img {
-      max-height: 140px;
-      width: auto;
-    }
-    @media (max-width: 600px) {
-      .header-brand img {
-        max-height: 100px;
-      }
-      header h1 {
-        font-size: 1.4rem;
-      }
-    }
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    header p {
-      margin-top: 0.5rem;
-      color: #cbd5f5;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+    :root {
+      --bg: #0b1220;
+      --surface: #0f172a;
+      --card: #111827;
+      --muted: #94a3b8;
+      --text: #e5e7eb;
+      --primary: #22c55e;
+      --primary-600: #16a34a;
+      --whatsapp: #25D366;
+      --accent: #38bdf8;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-      .price {
-        font-size: 1.1rem;
-      }
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #0b1220 40%, #020617 70%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
-    .vehicles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .card-content {
+
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(148,163,184,.1);
       padding: 1rem;
     }
-    .card-content h3 {
-      margin: 0 0 0.5rem 0;
+
+    .header-brand { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 1.5rem; }
+    .header-brand img { height: 200px; border-radius: 8px; }
+    .header-info h1 { font-size: 1.5rem; margin: 0; }
+
+    .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+    
+    .vehicles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
     }
-    .price {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #16a34a;
-      margin: 0.5rem 0;
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(148,163,184,.1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
     }
-    .details {
-      font-size: 0.9rem;
-      color: #555;
-      margin-bottom: 1rem;
+
+    .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+    .carousel { position: relative; height: 240px; background: #000; cursor: zoom-in; }
+    .carousel img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .carousel img.active { display: block; }
+    .carousel button {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10;
     }
+    .carousel .prev { left: 10px; }
+    .carousel .next { right: 10px; }
+
+    .card-content { padding: 1.5rem; }
+    .price { color: var(--primary); font-size: 1.4rem; font-weight: bold; margin: 0.5rem 0; }
+    .details { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
+
+    .contact-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
     .btn {
-      display: inline-block;
-      text-decoration: none;
-      background: #2563eb;
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 0.8rem; border-radius: 8px;
+      text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: opacity 0.2s;
     }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #e5e7eb;
-      margin-top: 3rem;
-      font-size: 0.9rem;
+
+    .btn-call { background: linear-gradient(to bottom, var(--primary), var(--primary-600)); color: #052e16; }
+    .btn-wa { background: var(--whatsapp); color: white; }
+    .btn:hover { opacity: 0.9; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+      z-index: 1000; justify-content: center; align-items: center;
     }
-    .carousel {
-    position: relative;
-    width: 100%;
-    height: 260px;
-    overflow: hidden;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  }
-  .carousel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* recadrage intelligent par défaut */
-    object-position: center; /* centre la voiture */
-    background-color: #000;
-    display: none;
-    transition: transform 0.4s ease;
-  }
-  .carousel img.active {
-    display: block;
-  }
-  .carousel:hover img.active {
-    transform: scale(1.03);
-  }
+    .lightbox img { max-width: 95%; max-height: 85vh; border-radius: 8px; user-select: none; }
+    .close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; z-index: 1010; }
+    .lb-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; pointer-events: none; }
+    .lb-nav button { pointer-events: auto; background: rgba(255,255,255,0.1); border: 1px solid white; color: white; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; }
 
-  /* Recadrage intelligent selon le type de photo */
-  .carousel img.front {
-    object-position: center 40%; /* vue avant */
-  }
-  .carousel img.side {
-    object-position: center center; /* vue latérale */
-  }
-  .carousel img.rear {
-    object-position: center 60%; /* vue arrière */
-  }
-  .carousel img.interior {
-    object-position: center top; /* intérieur */
-  }
-  .carousel img.active {
-    display: block;
-  }
-  .carousel:hover img.active {
-    transform: scale(1.03);
-  }
-  .carousel img.active {
-    display: block;
-  }
-  .carousel:hover img.active {
-    transform: scale(1.08);
-  }
-  .carousel img.active {
-    display: block;
-  }
-  .carousel button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    font-size: 1.5rem;
-    padding: 0.3rem 0.6rem;
-    cursor: pointer;
-    border-radius: 50%;
-  }
-  .carousel .prev { left: 10px; }
-  .carousel .next { right: 10px; }
-  /* Lightbox (zoom au clic) */
-  .lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 12px;
-}
-.lightbox button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    font-size: 2.5rem;
-    padding: 0.4rem 0.8rem;
-    cursor: pointer;
-    border-radius: 50%;
-}
-.lightbox .lb-prev { left: 30px; }
-.lightbox .lb-next { right: 30px; }
-  .lightbox .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 2.5rem;
-    color: white;
-    cursor: pointer;
-  }
-</style>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-
-    /* ===== CAROUSEL ===== */
-    document.querySelectorAll('.carousel').forEach(carousel => {
-      const images = carousel.querySelectorAll('img');
-      let index = 0;
-
-      function showImage(i) {
-        images.forEach(img => img.classList.remove('active'));
-        images[i].classList.add('active');
-      }
-
-      carousel.querySelector('.next').addEventListener('click', function (e) {
-        e.stopPropagation();
-        index = (index + 1) % images.length;
-        showImage(index);
-      });
-
-      carousel.querySelector('.prev').addEventListener('click', function (e) {
-        e.stopPropagation();
-        index = (index - 1 + images.length) % images.length;
-        showImage(index);
-      });
-    });
-
-    /* ===== LIGHTBOX AVEC NAVIGATION ===== */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const btnPrev = document.querySelector('.lb-prev');
-    const btnNext = document.querySelector('.lb-next');
-    const btnClose = document.querySelector('.lightbox .close');
-
-    let currentImages = [];
-    let currentIndex = 0;
-
-    document.querySelectorAll('.carousel').forEach(carousel => {
-      const imgs = Array.from(carousel.querySelectorAll('img'));
-      imgs.forEach((img, idx) => {
-        img.addEventListener('click', function () {
-          currentImages = imgs;
-          currentIndex = idx;
-          lightboxImg.src = img.src;
-          lightbox.style.display = 'flex';
-        });
-      });
-    });
-
-    btnNext.addEventListener('click', function (e) {
-      e.stopPropagation();
-      if (currentImages.length === 0) return;
-      currentIndex = (currentIndex + 1) % currentImages.length;
-      lightboxImg.src = currentImages[currentIndex].src;
-    });
-
-    btnPrev.addEventListener('click', function (e) {
-      e.stopPropagation();
-      if (currentImages.length === 0) return;
-      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-      lightboxImg.src = currentImages[currentIndex].src;
-    });
-
-    btnClose.addEventListener('click', function () {
-      lightbox.style.display = 'none';
-    });
-
-    lightbox.addEventListener('click', function (e) {
-      if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-      }
-    });
-
-  });
-</script>
+    footer { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.8rem; }
+  </style>
 </head>
 <body>
 
   <header>
     <div class="header-brand">
-      <img src="logo.png" alt="Logo entreprise – Vente de véhicules" />
-      <h1>Exposition de Véhicules à Vendre</h1>
-      <p>Découvrez nos meilleures offres de voitures disponibles</p>
+      <img src="logo.png" alt="Logo">
+      <div class="header-info">
+        <h1>Exposition de Véhicules</h1>
+        <p>Ventes & Occasions : 06 58 16 19 13</p>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="vehicles">
+    <div class="vehicles">
 
-      <!-- Véhicule 1 -->
       <div class="card">
-  <div class="carousel" data-index="0">
-    <img src="asx4.jpg" alt="Mitsubishi ASX vue 1" class="active">
-    <img src="asx5.jpg" alt="Mitsubishi ASX vue 2">
-    <img src="asx6.jpg" alt="Mitsubishi ASX vue 3">
-    <img src="asx1.jpg" alt="Mitsubishi ASX vue 4">
-    <img src="asx2.jpg" alt="Mitsubishi ASX vue 5">
-    <img src="asx3.jpg" alt="Mitsubishi ASX vue 6">
-    <img src="asx7.jpg" alt="Mitsubishi ASX vue 7">
-    <img src="asx8.jpg" alt="Mitsubishi ASX vue 8">
-    <img src="asx9.jpg" alt="Mitsubishi ASX vue 9">
-    <img src="asx10.jpg" alt="Mitsubishi ASX vue 10">
-    <img src="asx11.jpg" alt="Mitsubishi ASX vue 11">
-    <img src="asx12.jpg" alt="Mitsubishi ASX vue 12">
-    <img src="asx13.jpg" alt="Mitsubishi ASX vue 13">
-    <button class="prev">‹</button>
-    <button class="next">›</button>
-  </div>
-  <div class="card-content">
-    <h3>Mitsubishi ASX 2.2 – Occasion</h3>
-    <div class="price">7 490 €</div>
-    <div class="details">2014 • Diesel • 211 200 km</div>
-    <a href="#" class="btn">Voir détails</a>
-  </div>
-</div>
-
-      <!-- Véhicule 2 -->
-      <div class="card">
-        <img src="https://via.placeholder.com/400x250" alt="Voiture 2" />
+        <div class="carousel">
+          <img src="asx4.jpg" class="active" alt="Mitsubishi">
+          <img src="asx5.jpg" alt="Mitsubishi">
+          <img src="asx6.jpg" alt="Mitsubishi">
+          <img src="asx1.jpg" alt="Mitsubishi ASX">
+          <img src="asx2.jpg" alt="Mitsubishi ASX">
+          <img src="asx3.jpg" alt="Mitsubishi ASX">
+          <img src="asx7.jpg" alt="Mitsubishi ASX">
+          <img src="asx8.jpg" alt="Mitsubishi ASX">
+          <img src="asx9.jpg" alt="Mitsubishi ASX">
+          <img src="asx10.jpg" alt="Mitsubishi ASX">
+          <img src="asx11.jpg" alt="Mitsubishi ASX">
+          <img src="asx13.jpg" alt="Mitsubishi ASX">
+          <img src="asx14.jpg" alt="Mitsubishi ASX">   
+          <button class="prev">‹</button>
+          <button class="next">›</button>
+        </div>
         <div class="card-content">
-          <h3>Renault Clio – Occasion</h3>
+          <h3>Mitsubishi ASX 2.2</h3>
+          <div class="price">7 490 €</div>
+          <div class="details">2014 • Diesel • 211 200 km</div>
+          <div class="contact-actions">
+            <a href="tel:+33658161913" class="btn btn-call">📞 Appeler</a>
+            <a href="https://wa.me/33658161913" class="btn btn-wa">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="carousel">
+          <img src="https://via.placeholder.com/400x250/1e293b/fff?text=Renault+Clio" class="active" alt="Clio">
+          <button class="prev">‹</button><button class="next">›</button>
+        </div>
+        <div class="card-content">
+          <h3>Renault Clio IV</h3>
           <div class="price">7 200 €</div>
           <div class="details">2016 • Diesel • 120 000 km</div>
-          <a href="#" class="btn">Voir détails</a>
+          <div class="contact-actions">
+            <a href="tel:+33658161913" class="btn btn-call">📞 Appeler</a>
+            <a href="https://wa.me/33658161913" class="btn btn-wa">💬 WhatsApp</a>
+          </div>
         </div>
       </div>
 
-      <!-- Véhicule 3 -->
       <div class="card">
-        <img src="https://via.placeholder.com/400x250" alt="Voiture 3" />
+        <div class="carousel">
+          <img src="https://via.placeholder.com/400x250/1e293b/fff?text=Renault+Megane" class="active" alt="Megane">
+          <button class="prev">‹</button><button class="next">›</button>
+        </div>
         <div class="card-content">
-          <h3>Toyota Corolla Hybride – Occasion</h3>
-          <div class="price">11 900 €</div>
-          <div class="details">2019 • Hybride • 65 000 km</div>
-          <a href="#" class="btn">Voir détails</a>
+          <h3>Renault Megane IV</h3>
+          <div class="price">10 200 €</div>
+          <div class="details">2015 • Diesel • 110 500 km</div>
+          <div class="contact-actions">
+            <a href="tel:+33658161913" class="btn btn-call">📞 Appeler</a>
+            <a href="https://wa.me/33658161913" class="btn btn-wa">💬 WhatsApp</a>
+          </div>
         </div>
       </div>
 
-    </section>
+    </div>
   </main>
 
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <div class="lb-nav">
+      <button id="lb-prev">‹</button>
+      <button id="lb-next">›</button>
+    </div>
+    <img id="lightbox-img" src="">
+  </div>
+
   <footer>
-    © 2025 – Exposition de Véhicules | Contact : contact@vehicules.com
+    © 2025 – Exposition de Véhicules | Contact direct : 06 58 16 19 13
   </footer>
 
-<!-- Zoom plein écran -->
-<div id="lightbox" class="lightbox">
-  <span class="close">×</span>
-  <button class="lb-prev">‹</button>
-  <img id="lightbox-img" src="" alt="Zoom véhicule">
-  <button class="lb-next">›</button>
-</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let currentSet = [];
+      let currentIndex = 0;
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
 
+      // Gestion des Carrousels
+      document.querySelectorAll('.carousel').forEach(carousel => {
+        const imgs = carousel.querySelectorAll('img');
+        const next = carousel.querySelector('.next');
+        const prev = carousel.querySelector('.prev');
+        let idx = 0;
+
+        if(imgs.length <= 1) { 
+          if(next) next.style.display = 'none'; 
+          if(prev) prev.style.display = 'none'; 
+        }
+
+        const updateImg = (newIdx) => {
+          imgs[idx].classList.remove('active');
+          idx = newIdx;
+          imgs[idx].classList.add('active');
+        };
+
+        if(next) next.onclick = (e) => { e.stopPropagation(); updateImg((idx + 1) % imgs.length); };
+        if(prev) prev.onclick = (e) => { e.stopPropagation(); updateImg((idx - 1 + imgs.length) % imgs.length); };
+
+        imgs.forEach((img, i) => {
+          img.onclick = () => {
+            currentSet = Array.from(imgs);
+            currentIndex = i;
+            lbImg.src = currentSet[currentIndex].src;
+            lb.style.display = 'flex';
+          };
+        });
+      });
+
+      // Navigation Lightbox
+      const nextSlide = () => {
+        currentIndex = (currentIndex + 1) % currentSet.length;
+        lbImg.src = currentSet[currentIndex].src;
+      };
+
+      const prevSlide = () => {
+        currentIndex = (currentIndex - 1 + currentSet.length) % currentSet.length;
+        lbImg.src = currentSet[currentIndex].src;
+      };
+
+      document.getElementById('lb-next').onclick = (e) => { e.stopPropagation(); nextSlide(); };
+      document.getElementById('lb-prev').onclick = (e) => { e.stopPropagation(); prevSlide(); };
+      document.querySelector('.close').onclick = () => lb.style.display = 'none';
+      lb.onclick = (e) => { if(e.target === lb) lb.style.display = 'none'; };
+
+      // Gestion du Swipe Tactile
+      let touchStartX = 0;
+      lb.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+      lb.addEventListener('touchend', e => {
+        let touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 50) nextSlide(); // Swipe gauche
+        if (touchEndX - touchStartX > 50) prevSlide(); // Swipe droite
+      });
+    });
+  </script>
 </body>
 </html>
 
