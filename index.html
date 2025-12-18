@@ -153,19 +153,26 @@
   .carousel .next { right: 10px; }
 </style>
 <script>
-  document.querySelectorAll('.carousel').forEach(carousel => {
-    const images = carousel.querySelectorAll('img');
-    let index = 0;
-    carousel.querySelector('.next').onclick = () => {
-      images[index].classList.remove('active');
-      index = (index + 1) % images.length;
-      images[index].classList.add('active');
-    };
-    carousel.querySelector('.prev').onclick = () => {
-      images[index].classList.remove('active');
-      index = (index - 1 + images.length) % images.length;
-      images[index].classList.add('active');
-    };
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const images = carousel.querySelectorAll('img');
+      let index = 0;
+
+      const showImage = (i) => {
+        images.forEach(img => img.classList.remove('active'));
+        images[i].classList.add('active');
+      };
+
+      carousel.querySelector('.next').addEventListener('click', () => {
+        index = (index + 1) % images.length;
+        showImage(index);
+      });
+
+      carousel.querySelector('.prev').addEventListener('click', () => {
+        index = (index - 1 + images.length) % images.length;
+        showImage(index);
+      });
+    });
   });
 </script>
 </head>
@@ -184,10 +191,10 @@
 
       <!-- Véhicule 1 -->
       <div class="card">
-  <div class="carousel" data-index="2">
+  <div class="carousel" data-index="0">
     <img src="asx4.jpg" alt="Mitsubishi ASX vue 1" class="active">
     <img src="asx1.jpg" alt="Mitsubishi ASX vue 2">
-    <img src="asx2.jpg" alt="Mitsubishi ASX vue 3">    
+    <img src="asx2.jpg" alt="Mitsubishi ASX vue 3">
     <img src="asx3.jpg" alt="Mitsubishi ASX vue 4">
     <img src="asx5.jpg" alt="Mitsubishi ASX vue 5">
     <img src="asx6.jpg" alt="Mitsubishi ASX vue 6">
@@ -197,7 +204,7 @@
     <img src="asx10.jpg" alt="Mitsubishi ASX vue 10">
     <img src="asx11.jpg" alt="Mitsubishi ASX vue 11">
     <img src="asx12.jpg" alt="Mitsubishi ASX vue 12">
-    <img src="asx13.jpg" alt="Mitsubishi ASX vue 13">   
+    <img src="asx13.jpg" alt="Mitsubishi ASX vue 13">
     <button class="prev">‹</button>
     <button class="next">›</button>
   </div>
@@ -218,6 +225,7 @@
 
 </body>
 </html>
+
 
 
 
