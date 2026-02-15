@@ -16,7 +16,6 @@
       --primary-600: #16a34a;
       --whatsapp: #25D366;
       --accent: #38bdf8;
-      --danger: #ef4444;
     }
 
     * { box-sizing: border-box; }
@@ -64,7 +63,6 @@
 
     .container { max-width: 1200px; margin: 1.6rem auto; padding: 0 1rem; }
 
-    /* FILTER BAR */
     .filters {
       display: grid;
       grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr;
@@ -73,21 +71,11 @@
     }
 
     @media (max-width: 1000px) {
-      .filters {
-        grid-template-columns: 1fr 1fr;
-      }
+      .filters { grid-template-columns: 1fr 1fr; }
     }
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .field label {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 0.85rem; color: var(--muted); }
 
     input, select {
       width: 100%;
@@ -105,11 +93,7 @@
       box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
     }
 
-    .actions {
-      display: flex;
-      gap: 10px;
-      align-items: flex-end;
-    }
+    .actions { display: flex; gap: 10px; align-items: flex-end; }
 
     .btn-small {
       padding: 0.85rem 1rem;
@@ -117,7 +101,7 @@
       border: 1px solid rgba(148,163,184,.15);
       background: rgba(17,24,39,.6);
       color: var(--text);
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
       transition: opacity .2s, transform .1s;
       user-select: none;
@@ -126,11 +110,7 @@
     .btn-small:hover { opacity: .92; }
     .btn-small:active { transform: scale(.98); }
 
-    .stats {
-      margin: 0.8rem 0 1.8rem 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .stats { margin: 0.8rem 0 1.8rem 0; color: var(--muted); font-size: 0.9rem; }
 
     .vehicles {
       display: grid;
@@ -145,7 +125,6 @@
       overflow: hidden;
       transition: all 0.25s ease;
     }
-
     .card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
     .carousel { position: relative; height: 240px; background: #000; cursor: zoom-in; }
@@ -171,11 +150,12 @@
       padding: 0.25rem 0.6rem;
       border-radius: 999px;
       font-size: 0.75rem;
-      font-weight: 800;
+      font-weight: 900;
       white-space: nowrap;
+      background: rgba(56,189,248,.12);
+      border: 1px solid rgba(56,189,248,.25);
+      color: #7dd3fc;
     }
-    .badge-new { background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.25); color: #7dd3fc; }
-    .badge-sold { background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.25); color: #fca5a5; }
 
     .price { color: var(--primary); font-size: 1.35rem; font-weight: 900; margin: 0.5rem 0; }
     .details { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.1rem; }
@@ -203,7 +183,6 @@
     .btn-wa { background: var(--whatsapp); color: white; }
     .btn:hover { opacity: 0.92; }
 
-    /* LIGHTBOX */
     .lightbox {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.95);
@@ -211,42 +190,10 @@
       justify-content: center;
       align-items: center;
     }
-    .lightbox img {
-      max-width: 95%;
-      max-height: 85vh;
-      border-radius: 10px;
-      user-select: none;
-    }
-    .close {
-      position: absolute;
-      top: 18px;
-      right: 25px;
-      font-size: 2.5rem;
-      color: white;
-      cursor: pointer;
-      z-index: 1010;
-      user-select: none;
-    }
-    .lb-nav {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-      pointer-events: none;
-    }
-    .lb-nav button {
-      pointer-events: auto;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.35);
-      color: white;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.4rem;
-    }
+    .lightbox img { max-width: 95%; max-height: 85vh; border-radius: 10px; user-select: none; }
+    .close { position: absolute; top: 18px; right: 25px; font-size: 2.5rem; color: white; cursor: pointer; z-index: 1010; user-select: none; }
+    .lb-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; pointer-events: none; }
+    .lb-nav button { pointer-events: auto; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.35); color: white; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; font-size: 1.4rem; }
 
     .empty {
       padding: 2rem;
@@ -255,6 +202,15 @@
       border: 1px dashed rgba(148,163,184,.25);
       border-radius: 16px;
       background: rgba(17,24,39,.4);
+    }
+
+    .loading {
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      border: 1px solid rgba(148,163,184,.12);
+      border-radius: 16px;
+      background: rgba(17,24,39,.25);
     }
 
     footer { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.85rem; }
@@ -277,7 +233,6 @@
 
 <main class="container">
 
-  <!-- FILTRES -->
   <div class="filters">
     <div class="field">
       <label for="search">🔎 Recherche (marque / modèle)</label>
@@ -336,6 +291,8 @@
   </div>
 
   <div class="stats" id="stats"></div>
+  <div id="loading" class="loading">Chargement des véhicules…</div>
+
   <div class="vehicles" id="vehicles"></div>
 
   <div class="empty" id="empty" style="display:none;">
@@ -344,7 +301,6 @@
 
 </main>
 
-<!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox">
   <span class="close" id="lb-close">&times;</span>
   <div class="lb-nav">
@@ -359,56 +315,22 @@
 </footer>
 
 <script>
-  // ==========================
-  // 1) CONFIG (CONTACT + VOITURES)
-  // ==========================
+  // ======================================
+  // 1) CONFIG IMPORTANT
+  // ======================================
   const PHONE = "+33658161913";
   const WHATSAPP = "33658161913";
 
-  const cars = [
-    {
-      id: "asx-2014",
-      marque: "Mitsubishi",
-      modele: "ASX 2.2",
-      annee: 2014,
-      carburant: "Diesel",
-      km: 211200,
-      prix: 7490,
-      badge: "NOUVEAU",
-      images: [
-        "asx4.jpg","asx5.jpg","asx6.jpg","asx1.jpg","asx2.jpg","asx3.jpg",
-        "asx7.jpg","asx8.jpg","asx9.jpg","asx10.jpg","asx11.jpg","asx13.jpg","asx14.jpg"
-      ]
-    },
+const API_URL = "https://script.google.com/macros/s/AKfycbxwvMt3hBNkramt6YCW4W5Tsrg4oXut1-DqwzY1DuLWwQ6Na5DI2pXUd97pvORuhFglNg/exec";
 
-    // EXEMPLES - remplace par tes 20 voitures
-    {
-      id: "clio-2016",
-      marque: "Renault",
-      modele: "Clio IV",
-      annee: 2016,
-      carburant: "Diesel",
-      km: 120000,
-      prix: 7200,
-      badge: "",
-      images: ["https://via.placeholder.com/800x500/1e293b/fff?text=Renault+Clio+IV"]
-    },
-    {
-      id: "megane-2015",
-      marque: "Renault",
-      modele: "Megane IV",
-      annee: 2015,
-      carburant: "Diesel",
-      km: 110500,
-      prix: 10200,
-      badge: "",
-      images: ["https://via.placeholder.com/800x500/1e293b/fff?text=Renault+Megane+IV"]
-    },
-  ];
+  // ======================================
+  // 2) VARIABLES
+  // ======================================
+  let cars = [];
 
-  // ==========================
-  // 2) FORMAT
-  // ==========================
+  // ======================================
+  // 3) FORMAT + UTILS
+  // ======================================
   const formatPrice = (n) => new Intl.NumberFormat("fr-FR").format(n) + " €";
   const formatKm = (n) => new Intl.NumberFormat("fr-FR").format(n) + " km";
 
@@ -418,12 +340,13 @@
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
 
-  // ==========================
-  // 3) ELEMENTS
-  // ==========================
+  // ======================================
+  // 4) ELEMENTS
+  // ======================================
   const vehiclesEl = document.getElementById("vehicles");
   const statsEl = document.getElementById("stats");
   const emptyEl = document.getElementById("empty");
+  const loadingEl = document.getElementById("loading");
 
   const searchEl = document.getElementById("search");
   const fuelEl = document.getElementById("fuel");
@@ -435,9 +358,39 @@
   const sortEl = document.getElementById("sort");
   const resetEl = document.getElementById("reset");
 
-  // ==========================
-  // 4) RENDER
-  // ==========================
+  // ======================================
+  // 5) FETCH DATA
+  // ======================================
+  async function loadCars() {
+    try {
+      loadingEl.style.display = "block";
+      vehiclesEl.innerHTML = "";
+      emptyEl.style.display = "none";
+
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error("Erreur API: " + res.status);
+
+      const data = await res.json();
+      cars = Array.isArray(data) ? data : [];
+
+      // sécurité: si pas d'images => placeholder
+      cars = cars.map(c => ({
+        ...c,
+        images: (c.images && c.images.length) ? c.images : ["https://via.placeholder.com/800x500/1e293b/fff?text=Photo"]
+      }));
+
+      applyFilters();
+    } catch (err) {
+      loadingEl.textContent = "Erreur : impossible de charger les véhicules.";
+      console.error(err);
+    } finally {
+      loadingEl.style.display = "none";
+    }
+  }
+
+  // ======================================
+  // 6) RENDER
+  // ======================================
   function renderCars(list) {
     vehiclesEl.innerHTML = "";
 
@@ -450,12 +403,9 @@
     emptyEl.style.display = "none";
 
     list.forEach((car) => {
-      const badgeHtml =
-        car.badge === "NOUVEAU"
-          ? `<span class="badge badge-new">NOUVEAU</span>`
-          : car.badge === "VENDU"
-          ? `<span class="badge badge-sold">VENDU</span>`
-          : "";
+      const badgeHtml = car.badge
+        ? `<span class="badge">${car.badge}</span>`
+        : "";
 
       const imagesHtml = car.images
         .map((src, i) => `<img src="${src}" class="${i === 0 ? "active" : ""}" alt="${car.marque} ${car.modele}">`)
@@ -492,9 +442,9 @@
     setupCarouselsAndLightbox();
   }
 
-  // ==========================
-  // 5) FILTER + SORT
-  // ==========================
+  // ======================================
+  // 7) FILTER + SORT
+  // ======================================
   function getFilteredCars() {
     const q = normalize(searchEl.value);
     const fuel = fuelEl.value;
@@ -519,7 +469,6 @@
       return matchSearch && matchFuel && matchPrice && matchYear && matchKm;
     });
 
-    // TRI
     const sort = sortEl.value;
     filtered.sort((a, b) => {
       if (sort === "recent") return b.annee - a.annee;
@@ -536,9 +485,9 @@
     renderCars(getFilteredCars());
   }
 
-  // ==========================
-  // 6) CAROUSEL + LIGHTBOX
-  // ==========================
+  // ======================================
+  // 8) CAROUSEL + LIGHTBOX
+  // ======================================
   let currentSet = [];
   let currentIndex = 0;
 
@@ -601,7 +550,7 @@
   document.getElementById("lb-close").onclick = () => lb.style.display = "none";
   lb.onclick = (e) => { if (e.target === lb) lb.style.display = "none"; };
 
-  // Swipe mobile
+  // swipe mobile
   let touchStartX = 0;
   lb.addEventListener("touchstart", e => touchStartX = e.changedTouches[0].screenX);
   lb.addEventListener("touchend", e => {
@@ -610,16 +559,16 @@
     if (touchEndX - touchStartX > 50) prevSlide();
   });
 
-  // ESC + flèches clavier
+  // ESC + flèches
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") lb.style.display = "none";
     if (e.key === "ArrowRight") nextSlide();
     if (e.key === "ArrowLeft") prevSlide();
   });
 
-  // ==========================
-  // 7) EVENTS
-  // ==========================
+  // ======================================
+  // 9) EVENTS
+  // ======================================
   [searchEl, fuelEl, priceMinEl, priceMaxEl, yearMinEl, yearMaxEl, kmMaxEl, sortEl]
     .forEach(el => el.addEventListener("input", applyFilters));
 
@@ -635,14 +584,16 @@
     applyFilters();
   });
 
-  // ==========================
-  // 8) START
-  // ==========================
-  renderCars(cars);
+  // ======================================
+  // 10) START
+  // ======================================
+  loadCars();
 </script>
 
 </body>
 </html>
+
+
 
 
 
