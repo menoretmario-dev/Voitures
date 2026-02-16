@@ -1,14 +1,16 @@
 :root {
   --bg: #0b1220;
   --surface: #111827;
-  --primary: #22c55e; /* Vert prix */
-  --accent: #38bdf8;  /* Bleu filtres */
+  --primary: #22c55e;
+  --accent: #38bdf8;
   --text: #e5e7eb;
   --muted: #94a3b8;
   --radius: 12px;
+  --whatsapp: #25D366;
 }
 
-/* 2. Reset et Fond */
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
@@ -17,17 +19,42 @@ body {
   line-height: 1.6;
 }
 
-/* 3. La Grille de Voitures (Beaucoup mieux que "margin: auto") */
+/* --- HEADER & LAYOUT --- */
+header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  padding: 1rem;
+}
+.header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.brand-left img { height: 70px; border-radius: 10px; }
+.container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
+
+/* --- FILTRES (Indispensable) --- */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease-in-out;
+}
+.field label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 5px; }
+input, select {
+  width: 100%; padding: 0.85rem; border-radius: var(--radius);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(15, 23, 42, 0.6); color: var(--text);
+  outline: none;
+}
+input:focus { border-color: var(--accent); }
+
+/* --- GRILLE & CARTES --- */
 .vehicles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 15px;
 }
 
-/* 4. La Carte Véhicule (L'élément .card ou .voiture) */
 .card {
   background: var(--surface);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -35,38 +62,44 @@ body {
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* 5. Gestion des Images (Object-fit est ton meilleur ami) */
-.card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover; /* Évite de déformer l'image */
-  transition: opacity 0.3s;
-}
-
-/* 6. Typographie et Prix */
-.card-content { padding: 1.5rem; }
-
-.price {
-  color: var(--primary);
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin: 10px 0;
-}
-
-/* 7. Lightbox (Visionneuse plein écran) */
-.lightbox {
-  position: fixed;
-  inset: 0; /* Remplace top/left/width/height */
-  background: rgba(0, 0, 0, 0.95);
+/* CAROUSEL DANS LA CARTE */
+.carousel { position: relative; height: 220px; background: #000; }
+.carousel img {
+  width: 100%; height: 100%;
+  object-fit: cover;
   display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  backdrop-filter: blur(5px);
+}
+.carousel img.active { display: block; }
+
+/* CONTENU DE LA CARTE */
+.card-content { padding: 1.5rem; }
+.price { color: var(--primary); font-size: 1.5rem; font-weight: 800; margin: 10px 0; }
+.contact-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+
+/* BOUTONS */
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 0.8rem; border-radius: 10px; text-decoration: none; font-weight: 800;
+}
+.btn-call { background: var(--primary); color: #052e16; }
+.btn-wa { background: var(--whatsapp); color: white; }
+
+/* --- LIGHTBOX & MOBILE --- */
+.lightbox {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: none; align-items: center; justify-content: center;
+  z-index: 2000; backdrop-filter: blur(5px);
+}
+
+@media (max-width: 600px) {
+  .filter-toggle { display: flex; width: 100%; padding: 1rem; background: var(--accent); border: none; border-radius: var(--radius); font-weight: bold; margin-bottom: 15px; cursor: pointer;}
+  .filters { display: none; opacity: 0; transform: translateY(-10px); }
+  .filters.active { display: grid; opacity: 1; transform: translateY(0); }
+  .contact-actions { grid-template-columns: 1fr; }
 }
