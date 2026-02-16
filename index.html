@@ -175,12 +175,10 @@ const statsEl=document.getElementById("stats");
 const emptyEl=document.getElementById("empty");
 const loadingEl=document.getElementById("loading");
 
+// On ne récupère que les éléments qui existent encore dans ton HTML
 const searchEl=document.getElementById("search");
 const fuelEl=document.getElementById("fuel");
-const priceMinEl=document.getElementById("priceMin");
 const priceMaxEl=document.getElementById("priceMax");
-const yearMinEl=document.getElementById("yearMin");
-const yearMaxEl=document.getElementById("yearMax");
 const kmMaxEl=document.getElementById("kmMax");
 const sortEl=document.getElementById("sort");
 const resetEl=document.getElementById("reset");
@@ -207,15 +205,16 @@ async function loadCars(){
 function getFilteredCars(){
   const q=normalize(searchEl.value);
   const fuel=fuelEl.value;
-  const priceMin=Number(priceMinEl.value||0);
   const priceMax=Number(priceMaxEl.value||99999999);
-  const yearMin=Number(yearMinEl.value||0);
-  const yearMax=Number(yearMaxEl.value||9999);
   const kmMax=Number(kmMaxEl.value||99999999);
 
   let filtered=cars.filter(c=>{
     const text=normalize(`${c.marque} ${c.modele}`);
-    return text.includes(q) && (!fuel||c.carburant===fuel) && c.prix>=priceMin && c.prix<=priceMax && c.annee>=yearMin && c.annee<=yearMax && c.km<=kmMax;
+    // Filtrage simplifié : Recherche texte + Carburant + Prix Max + Km Max
+    return text.includes(q) && 
+           (!fuel || c.carburant === fuel) && 
+           c.prix <= priceMax && 
+           c.km <= kmMax;
   });
 
   switch(sortEl.value){
@@ -224,12 +223,12 @@ function getFilteredCars(){
     case"priceDesc": filtered.sort((a,b)=>b.prix-a.prix); break;
     case"kmAsc": filtered.sort((a,b)=>a.km-b.km); break;
   }
-
   return filtered;
 }
+
 function applyFilters(){ renderCars(getFilteredCars()); }
 
-// ===== RENDER =====
+// ===== RENDER (reste identique) =====
 function renderCars(list){
   vehiclesEl.innerHTML="";
   statsEl.textContent=`${list.length} véhicule(s) affiché(s) sur ${cars.length}`;
@@ -258,7 +257,6 @@ function renderCars(list){
     `;
     vehiclesEl.appendChild(card);
   });
-
   setupCarouselsAndLightbox();
 }
 
@@ -294,8 +292,19 @@ lb.addEventListener("touchend",e=>{let touchEndX=e.changedTouches[0].screenX;if(
 document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.style.display="none";if(e.key==="ArrowRight")nextSlide();if(e.key==="ArrowLeft")prevSlide();});
 
 // ===== EVENTS =====
-[searchEl,fuelEl,priceMinEl,priceMaxEl,yearMinEl,yearMaxEl,kmMaxEl,sortEl].forEach(el=>el.addEventListener("input",applyFilters));
-resetEl.addEventListener("click",()=>{searchEl.value="";fuelEl.value="";priceMinEl.value="";priceMaxEl.value="";yearMinEl.value="";yearMaxEl.value="";kmMaxEl.value="";sortEl.value="recent";applyFilters();});
+// On n'écoute que les éléments existants
+[searchEl, fuelEl, priceMaxEl, kmMaxEl, sortEl].forEach(el => {
+    if(el) el.addEventListener("input", applyFilters);
+});
+
+resetEl.addEventListener("click",()=>{
+    searchEl.value="";
+    fuelEl.value="";
+    priceMaxEl.value="";
+    kmMaxEl.value="";
+    sortEl.value="recent";
+    applyFilters();
+});
 
 // ===== START =====
 const toggleBtn = document.getElementById("toggleFilters");
@@ -305,14 +314,14 @@ toggleBtn.onclick = () => {
     filterContainer.classList.toggle("active");
     const isActive = filterContainer.classList.contains("active");
     toggleBtn.innerHTML = isActive ? "❌ Fermer les filtres" : "🔍 Afficher les filtres";
-    toggleBtn.style.background = isActive ? "rgba(148,163,184,.2)" : "var(--accent)";
-    toggleBtn.style.color = isActive ? "var(--text)" : "#000";
 };
+
 loadCars();
 </script>
 
 </body>
 </html>
+
 
 
 
