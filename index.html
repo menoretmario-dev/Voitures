@@ -85,10 +85,10 @@ footer{text-align:center;padding:3rem;color:var(--muted);font-size:0.85rem;}
 <main class="container">
 <div class="filters">
 <div class="field"><label for="search">🔎 Recherche (marque / modèle)</label><input id="search" type="text" placeholder="Ex: Renault Clio, Peugeot 208..." autocomplete="off" /></div>
+<div class="field"><label for="sort">↕️ Trier</label><select id="sort"><option value="recent">Année (récent)</option><option value="priceAsc">Prix (croissant)</option><option value="priceDesc">Prix (décroissant)</option><option value="kmAsc">Km (faible)</option></select></div>
 <div class="field"><label for="fuel">⛽ Carburant</label><select id="fuel"><option value="">Tous</option><option value="Essence">Essence</option><option value="Diesel">Diesel</option><option value="Hybride">Hybride</option><option value="Électrique">Électrique</option></select></div>
 <div class="field"><label for="priceMin">💶 Prix min</label><input id="priceMin" type="number" placeholder="Ex: 5000" min="0" /></div>
 <div class="field"><label for="priceMax">💶 Prix max</label><input id="priceMax" type="number" placeholder="Ex: 15000" min="0" /></div>
-<div class="field"><label for="sort">↕️ Trier</label><select id="sort"><option value="recent">Année (récent)</option><option value="priceAsc">Prix (croissant)</option><option value="priceDesc">Prix (décroissant)</option><option value="kmAsc">Km (faible)</option></select></div>
 <div class="field"><label for="yearMin">📅 Année min</label><input id="yearMin" type="number" placeholder="Ex: 2012" min="1980" /></div>
 <div class="field"><label for="yearMax">📅 Année max</label><input id="yearMax" type="number" placeholder="Ex: 2022" min="1980" /></div>
 <div class="field"><label for="kmMax">🧾 Km max</label><input id="kmMax" type="number" placeholder="Ex: 150000" min="0" /></div>
@@ -253,5 +253,6 @@ loadCars();
 
 </body>
 </html>
+
 
 
