@@ -1,78 +1,72 @@
+:root {
+  --bg: #0b1220;
+  --surface: #111827;
+  --primary: #22c55e; /* Vert prix */
+  --accent: #38bdf8;  /* Bleu filtres */
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --radius: 12px;
+}
+
+/* 2. Reset et Fond */
 body {
-    font-family: Arial;
-    background: #f2f2f2;
-    padding: 20px;
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: radial-gradient(circle at top, #1e293b, var(--bg));
+  color: var(--text);
+  line-height: 1.6;
 }
 
-h1 {
-    text-align: center;
+/* 3. La Grille de Voitures (Beaucoup mieux que "margin: auto") */
+.vehicles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
 }
 
-.voiture {
-    background: white;
-    padding: 15px;
-    margin: 20px auto;
-    width: 300px;
-    border-radius: 8px;
-    text-align: center;
+/* 4. La Carte Véhicule (L'élément .card ou .voiture) */
+.card {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.voiture img {
-    width: 100%;
-    border-radius: 5px;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.prix {
-    color: green;
-    font-weight: bold;
-}
-
-.photos {
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-}
-
-.photos img.miniature {
-    width: 90px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.photos img.miniature:hover {
-    transform: scale(1.1);
-}
-
-.lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 8px;
-}
-
+/* 5. Gestion des Images (Object-fit est ton meilleur ami) */
 .card img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  height: 220px;
+  object-fit: cover; /* Évite de déformer l'image */
+  transition: opacity 0.3s;
 }
 
-@media (max-width: 600px) {
-  .card img {
-    height: 180px;
-  }
+/* 6. Typographie et Prix */
+.card-content { padding: 1.5rem; }
+
+.price {
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+/* 7. Lightbox (Visionneuse plein écran) */
+.lightbox {
+  position: fixed;
+  inset: 0; /* Remplace top/left/width/height */
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
 }
